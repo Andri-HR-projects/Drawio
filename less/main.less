@@ -1,0 +1,262 @@
+@main-background-color: #c50;
+@dark-background-color: #a30;
+@main-text-color: #fff;
+@alt-text-color: #000;
+
+
+//Keyframes
+@-webkit-keyframes sidebar-small {
+    .sidebar__small
+}
+
+@-moz-keyframes sidebar-small {
+    .sidebar__small
+}
+
+@-ms-keyframes sidebar-small {
+    .sidebar__small
+}
+
+@-o-keyframes sidebar-small {
+    .sidebar__small
+}
+
+@keyframes sidebar-small {
+    .sidebar__small
+}
+
+@-webkit-keyframes sidebar-large {
+    .sidebar__large
+}
+
+@-moz-keyframes sidebar-large {
+    .sidebar__large
+}
+
+@-ms-keyframes sidebar-large {
+    .sidebar__large
+}
+
+@-o-keyframes sidebar-large {
+    .sidebar__large
+}
+
+@keyframes sidebar-large {
+    .sidebar__large
+}
+
+@-webkit-keyframes arrow-left {
+    .arrow-left
+}
+
+@-moz-keyframes arrow-left {
+    .arrow-left
+}
+
+@-ms-keyframes arrow-left {
+    .arrow-left
+}
+
+@-o-keyframes arrow-left {
+    .arrow-left
+}
+
+@keyframes arrow-left {
+    .arrow-left
+}
+
+@-webkit-keyframes arrow-right {
+    .arrow-right
+}
+
+@-moz-keyframes arrow-right {
+    .arrow-right
+}
+
+@-ms-keyframes arrow-right {
+    .arrow-right
+}
+
+@-o-keyframes arrow-right {
+    .arrow-right
+}
+
+@keyframes arrow-right {
+    .arrow-right
+}
+
+.sidebar__small () {
+    from {
+        width: 300px;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+.sidebar__large () {
+    from {
+        width: 100px;
+    }
+
+    to {
+        width: 300px;
+    }
+}
+
+.arrow-left () {
+    from {
+        transform: rotate(180deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.arrow-right () {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.body {
+    display: grid;
+    grid-template-columns: 300px 1fr 100px;
+    height: 100%;
+    margin: 0;
+}
+
+.btn {
+    padding: 8px 12px;
+    float: left;
+    border-radius: 6%;
+    cursor: pointer;
+    background-color: @main-background-color;
+    color: @main-text-color;
+    border: 1px solid @main-text-color;
+
+
+    &__active {
+        background-color: @main-text-color;
+        color: @alt-text-color;
+        border: 1px solid @alt-text-color;
+    }
+}
+
+.sidebar {
+    background-color: @main-background-color;
+    color: @main-text-color;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+    font-size: 36px;
+    display: grid;
+
+    &__left {
+        grid-template-rows: 2fr 1fr;
+    }
+
+    &__right {
+        grid-template-rows: 1fr 1fr;
+        overflow: hidden;
+    }
+
+
+    &__right__Small {
+        width: 100px;
+        z-index: 1;
+        justify-self: right;
+
+        //FIXME nesting
+        .sidebar--settings {
+            float: left;
+            display: none;
+        }
+    }
+
+    &--settings {
+        width: 250px;
+        float: left;
+
+        &--input {
+            width: 250px;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    &--tool_list {
+        width: 80%;
+
+        &--tool {
+            width: 70%;
+
+            &--icon {
+                margin-right: 20px;
+            }
+
+            &:hover {
+                background-color: @dark-background-color;
+            }
+        }
+    }
+
+    &.sidebar__large {
+        animation-name: sidebar-large;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+
+        //FIXME nesting
+        .sidebar--settings {
+            display: block;
+
+            // &--input {
+            //     animation-name: sidebar-large;
+            //     animation-duration: 0.5s;
+            //     animation-fill-mode: forwards;
+            // }
+        }
+    }
+
+    &.sidebar__small {
+        animation-name: sidebar-small;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+
+        //FIXME nesting
+        .sidebar--settings {
+            display: none;
+
+            // &--input {
+            //     animation-name: sidebar-small;
+            //     animation-duration: 0.5s;
+            //     animation-fill-mode: forwards;
+            // }
+
+        }
+    }
+
+    &--arrow {
+        position: absolute;
+        top: 50%;
+        margin-left: 20px;
+
+        &__right {
+            animation-name: arrow-right;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        &__left {
+            animation-name: arrow-left;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+    }
+}

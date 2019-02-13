@@ -1,0 +1,257 @@
+@-webkit-keyframes sidebar-small {
+  from {
+    width: 300px;
+  }
+  to {
+    width: 100px;
+  }
+}
+@-moz-keyframes sidebar-small {
+  from {
+    width: 300px;
+  }
+  to {
+    width: 100px;
+  }
+}
+@-ms-keyframes sidebar-small {
+  from {
+    width: 300px;
+  }
+  to {
+    width: 100px;
+  }
+}
+@-o-keyframes sidebar-small {
+  from {
+    width: 300px;
+  }
+  to {
+    width: 100px;
+  }
+}
+@keyframes sidebar-small {
+  from {
+    width: 300px;
+  }
+  to {
+    width: 100px;
+  }
+}
+@-webkit-keyframes sidebar-large {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 300px;
+  }
+}
+@-moz-keyframes sidebar-large {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 300px;
+  }
+}
+@-ms-keyframes sidebar-large {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 300px;
+  }
+}
+@-o-keyframes sidebar-large {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 300px;
+  }
+}
+@keyframes sidebar-large {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 300px;
+  }
+}
+@-webkit-keyframes arrow-left {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@-moz-keyframes arrow-left {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@-ms-keyframes arrow-left {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@-o-keyframes arrow-left {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@keyframes arrow-left {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes arrow-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@-moz-keyframes arrow-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@-ms-keyframes arrow-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@-o-keyframes arrow-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@keyframes arrow-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+.body {
+  display: grid;
+  grid-template-columns: 300px 1fr 100px;
+  height: 100%;
+  margin: 0;
+}
+.btn {
+  padding: 8px 12px;
+  float: left;
+  border-radius: 6%;
+  cursor: pointer;
+  background-color: #c50;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn__active {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+.sidebar {
+  background-color: #c50;
+  color: #fff;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  font-size: 36px;
+  display: grid;
+}
+.sidebar__left {
+  grid-template-rows: 2fr 1fr;
+}
+.sidebar__right {
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+}
+.sidebar__right__Small {
+  width: 100px;
+  z-index: 1;
+  justify-self: right;
+}
+.sidebar__right__Small .sidebar--settings {
+  float: left;
+  display: none;
+}
+.sidebar--settings {
+  width: 250px;
+  float: left;
+}
+.sidebar--settings--input {
+  width: 250px;
+  padding: 0;
+  margin: 0;
+}
+.sidebar--tool_list {
+  width: 80%;
+}
+.sidebar--tool_list--tool {
+  width: 70%;
+}
+.sidebar--tool_list--tool--icon {
+  margin-right: 20px;
+}
+.sidebar--tool_list--tool:hover {
+  background-color: #a30;
+}
+.sidebar.sidebar__large {
+  animation-name: sidebar-large;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.sidebar.sidebar__large .sidebar--settings {
+  display: block;
+}
+.sidebar.sidebar__small {
+  animation-name: sidebar-small;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.sidebar.sidebar__small .sidebar--settings {
+  display: none;
+}
+.sidebar--arrow {
+  position: absolute;
+  top: 50%;
+  margin-left: 20px;
+}
+.sidebar--arrow__right {
+  animation-name: arrow-right;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.sidebar--arrow__left {
+  animation-name: arrow-left;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
