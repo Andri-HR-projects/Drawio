@@ -1,262 +1,166 @@
-@main-background-color: #c50;
-@dark-background-color: #a30;
-@main-text-color: #fff;
-@alt-text-color: #000;
-
-
+//#636363 #e7e7e7 #b69e54 #d0b664 #b35c73 #cd798f
+@main-color: #e7e7e7;
+@dark-main-color: #d4d4d4;
+@dark-color: #636363;
+@dark-alt-color: #b69e54;
+@alt-color: #d0b664;
+@dark-pink-color: #b35c73;
+@pink-color: #cd798f;
+//
 //Keyframes
-@-webkit-keyframes sidebar-small {
-    .sidebar__small
-}
-
-@-moz-keyframes sidebar-small {
-    .sidebar__small
-}
-
-@-ms-keyframes sidebar-small {
-    .sidebar__small
-}
-
-@-o-keyframes sidebar-small {
-    .sidebar__small
-}
-
 @keyframes sidebar-small {
-    .sidebar__small
-}
-
-@-webkit-keyframes sidebar-large {
-    .sidebar__large
-}
-
-@-moz-keyframes sidebar-large {
-    .sidebar__large
-}
-
-@-ms-keyframes sidebar-large {
-    .sidebar__large
-}
-
-@-o-keyframes sidebar-large {
-    .sidebar__large
+  from {
+    width: 300px;
+  }
+  to {
+    width: 100px;
+  }
 }
 
 @keyframes sidebar-large {
-    .sidebar__large
-}
-
-@-webkit-keyframes arrow-left {
-    .arrow-left
-}
-
-@-moz-keyframes arrow-left {
-    .arrow-left
-}
-
-@-ms-keyframes arrow-left {
-    .arrow-left
-}
-
-@-o-keyframes arrow-left {
-    .arrow-left
+  from {
+    width: 100px;
+  }
+  to {
+    width: 300px;
+  }
 }
 
 @keyframes arrow-left {
-    .arrow-left
-}
-
-@-webkit-keyframes arrow-right {
-    .arrow-right
-}
-
-@-moz-keyframes arrow-right {
-    .arrow-right
-}
-
-@-ms-keyframes arrow-right {
-    .arrow-right
-}
-
-@-o-keyframes arrow-right {
-    .arrow-right
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes arrow-right {
-    .arrow-right
-}
-
-.sidebar__small () {
-    from {
-        width: 300px;
-    }
-
-    to {
-        width: 100px;
-    }
-}
-
-.sidebar__large () {
-    from {
-        width: 100px;
-    }
-
-    to {
-        width: 300px;
-    }
-}
-
-.arrow-left () {
-    from {
-        transform: rotate(180deg);
-    }
-
-    to {
-        transform: rotate(0deg);
-    }
-}
-
-.arrow-right () {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(180deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }
 
 .body {
-    display: grid;
-    grid-template-columns: 300px 1fr 100px;
-    height: 100%;
-    margin: 0;
+  display: grid;
+  grid-template-columns: 300px 1fr 100px;
+  height: 100%;
+  margin: 0;
+}
+
+.logo {
+  background-image: url(/skull-col.png);
+  background-size: 100%;
+  width: 100px;
+  height: 100px;
 }
 
 .btn {
-    padding: 8px 12px;
-    float: left;
-    border-radius: 6%;
-    cursor: pointer;
-    background-color: @main-background-color;
-    color: @main-text-color;
-    border: 1px solid @main-text-color;
-
-
-    &__active {
-        background-color: @main-text-color;
-        color: @alt-text-color;
-        border: 1px solid @alt-text-color;
-    }
+  padding: 8px 12px;
+  border-radius: 6%;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to bottom right,
+    @main-color,
+    @dark-main-color
+  );
+  color: contrast(@main-color);
+  border: 1px solid contrast(@main-color);
+  &__active {
+    background-image: linear-gradient(
+      to bottom right,
+      @pink-color,
+      @dark-pink-color
+    );
+    color: contrast(@pink-color);
+  }
+  &:hover {
+    background-image: linear-gradient(
+      to bottom right,
+      @alt-color,
+      @dark-alt-color
+    );
+    color: contrast(@alt-color);
+  }
 }
 
 .sidebar {
-    background-color: @main-background-color;
-    color: @main-text-color;
-    height: 100%;
-    align-items: center;
-    justify-items: center;
-    font-size: 36px;
+  background-color: @dark-color;
+  color: contrast(@dark-color);
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  font-size: 16px;
+  display: grid;
+  &__left {
+    grid-template-rows: 2fr 1fr;
+  }
+  &__right {
+    grid-template-rows: 1fr 1fr;
+    overflow: hidden;
+  }
+  &__right__Small {
+    width: 100px;
+    z-index: 1;
+    justify-self: right; //FIXME nesting
+    .sidebar--settings {
+      float: left;
+      display: none;
+    }
+  }
+  &--settings {
+    width: 250px;
+    float: left;
+    &--input {
+      width: 250px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  &--tool_list {
+    width: 100%;
     display: grid;
-
-    &__left {
-        grid-template-rows: 2fr 1fr;
+    justify-items: center;
+    &--tool {
+      width: 70%;
+      &--icon {
+        margin-right: 20px;
+      }
     }
-
+  }
+  &.sidebar__large {
+    animation-name: sidebar-large;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards; //FIXME nesting
+    .sidebar--settings {
+      display: block;
+    }
+  }
+  &.sidebar__small {
+    animation-name: sidebar-small;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards; //FIXME nesting
+    .sidebar--settings {
+      display: none;
+    }
+  }
+  &--arrow {
+    position: absolute;
+    top: 50%;
+    margin-left: 20px;
+    cursor: pointer;
     &__right {
-        grid-template-rows: 1fr 1fr;
-        overflow: hidden;
+      animation-name: arrow-right;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
     }
-
-
-    &__right__Small {
-        width: 100px;
-        z-index: 1;
-        justify-self: right;
-
-        //FIXME nesting
-        .sidebar--settings {
-            float: left;
-            display: none;
-        }
+    &__left {
+      animation-name: arrow-left;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
     }
-
-    &--settings {
-        width: 250px;
-        float: left;
-
-        &--input {
-            width: 250px;
-            padding: 0;
-            margin: 0;
-        }
-    }
-
-    &--tool_list {
-        width: 80%;
-
-        &--tool {
-            width: 70%;
-
-            &--icon {
-                margin-right: 20px;
-            }
-
-            &:hover {
-                background-color: @dark-background-color;
-            }
-        }
-    }
-
-    &.sidebar__large {
-        animation-name: sidebar-large;
-        animation-duration: 0.5s;
-        animation-fill-mode: forwards;
-
-        //FIXME nesting
-        .sidebar--settings {
-            display: block;
-
-            // &--input {
-            //     animation-name: sidebar-large;
-            //     animation-duration: 0.5s;
-            //     animation-fill-mode: forwards;
-            // }
-        }
-    }
-
-    &.sidebar__small {
-        animation-name: sidebar-small;
-        animation-duration: 0.5s;
-        animation-fill-mode: forwards;
-
-        //FIXME nesting
-        .sidebar--settings {
-            display: none;
-
-            // &--input {
-            //     animation-name: sidebar-small;
-            //     animation-duration: 0.5s;
-            //     animation-fill-mode: forwards;
-            // }
-
-        }
-    }
-
-    &--arrow {
-        position: absolute;
-        top: 50%;
-        margin-left: 20px;
-
-        &__right {
-            animation-name: arrow-right;
-            animation-duration: 0.5s;
-            animation-fill-mode: forwards;
-        }
-
-        &__left {
-            animation-name: arrow-left;
-            animation-duration: 0.5s;
-            animation-fill-mode: forwards;
-        }
-    }
+  }
 }
