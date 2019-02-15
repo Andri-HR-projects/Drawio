@@ -17,46 +17,26 @@
     <aside class="sidebar sidebar--left">
       <div class="logo"></div>
       <section class="sidebar--tool_list">
-        <p
-          id="pencil"
-          onclick="changeActive('pencil')"
-          class="sidebar--tool_list--tool btn  btn__active"
-        >
+        <p id="pencil" data-tool="pencil" class="sidebar--tool_list--tool btn ">
           <i class="fas fa-pencil-alt sidebar--tool_list--tool--icon"></i>Pencil
         </p>
-        <p
-          id="circle"
-          onclick="changeActive('circle')"
-          class="sidebar--tool_list--tool btn"
-        >
+        <p id="circle" data-tool="circle" class="sidebar--tool_list--tool btn">
           <i class="fas fa-circle sidebar--tool_list--tool--icon"></i>Circle
         </p>
         <p
           id="square"
-          onclick="changeActive('square')"
-          class="sidebar--tool_list--tool btn "
+          data-tool="rectangle"
+          class="sidebar--tool_list--tool btn  btn__active"
         >
           <i class="fas fa-square sidebar--tool_list--tool--icon"></i>Square
         </p>
-        <p
-          id="line"
-          onclick="changeActive('line')"
-          class="sidebar--tool_list--tool btn"
-        >
+        <p id="line" data-tool="line" class="sidebar--tool_list--tool btn">
           <i class="fas fa-arrows-alt-h sidebar--tool_list--tool--icon"></i>Line
         </p>
-        <p
-          id="text"
-          onclick="changeActive('text')"
-          class="sidebar--tool_list--tool btn"
-        >
+        <p id="text" data-tool="text" class="sidebar--tool_list--tool btn">
           <i class="fas fa-font sidebar--tool_list--tool--icon"></i>Text
         </p>
-        <p
-          id="move"
-          onclick="changeActive('move')"
-          class="sidebar--tool_list--tool btn"
-        >
+        <p id="move" data-tool="move" class="sidebar--tool_list--tool btn">
           <i class="fas fa-hand-paper sidebar--tool_list--tool--icon"></i>Move
         </p>
       </section>
@@ -81,7 +61,7 @@
         <input type="button" value="Load" class="btn btn--load" />
       </section>
     </aside>
-    <canvas id="canvas" class="canvas"></canvas>
+    <canvas id="canvas" class="canvas" width="1520" height="938"></canvas>
     <aside
       id="sidebar__right"
       class="sidebar sidebar__right sidebar__right__Small"
@@ -99,6 +79,12 @@
       ></i>
     </aside>
   </body>
-  <script src="js/drawio.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+    charset="utf-8"
+  ></script>
+  <script src="js/shapes.js" charset="utf-8"></script>
+  <script src="js/drawio.js" charset="utf-8"></script>
+
   <script src="js/styles.js"></script>
 </html>
