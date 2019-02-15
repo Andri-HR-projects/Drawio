@@ -92,6 +92,12 @@
   padding: 0;
   margin: 0;
 }
+.sidebar--settings--input-lineWidth {
+  width: 220px;
+}
+.sidebar--settings--input-fontSize {
+  width: 60px;
+}
 .sidebar--tool_list {
   width: 100%;
   display: grid;
