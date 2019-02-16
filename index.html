@@ -12,6 +12,52 @@
 </head>
 
 <body class="body">
+  <nav class="nav">
+    <div class="empty"></div>
+    <div class="nav--container nav--container-split">
+        <div class="nav--container--input nav--container--input--color nav--container--input--color-black nav--container--input--color-active" data-value="#000000"></div>
+        <div class="nav--container--input nav--container--input--color nav--container--input--color-red" data-value="##FF0000"></div>
+        <div class="nav--container--input nav--container--input--color nav--container--input--color-yellow" data-value="#FFFF00"></div>
+        <div class="nav--container--input nav--container--input--color nav--container--input--color-green" data-value="#008000"></div>
+        <div class="nav--container--input nav--container--input--color nav--container--input--color-blue" data-value="#0000FF"></div>
+        <div class="nav--container--input nav--container--input--color nav--container--input--color-orange" data-value="#cc5500"></div>
+        <!-- <input id="color" type="color" class="nav--container--input nav--container--input-color" /> -->
+    </div>
+    <div class="nav--container">
+        <label for="lineWidth">Pick line width</label>
+        <input type="range" id="lineWidth" class="nav--container--input nav--container--input-lineWidth" value="12"
+          min="1" max="100" oninput="lineWidthOut.value = lineWidth.value">
+        <output id="lineWidthOut">100</output>
+    </div>
+    <div class="nav--container">
+        <label for="lineWidth">Fill</label>
+        <div class="nav--container--input nav--container--input--fill nav--container--input--fill-filled"></div>
+    </div>
+
+
+
+    <!-- <div class="nav--container">
+        <label for="color">Pick color</label>
+        <input id="color" type="color" class="nav--container--input nav--container--input-color" />
+    </div> -->
+
+    <!-- <label for="lineWidth">Pick line width</label>
+    <input type="range" id="lineWidth" class="sidebar--settings--input sidebar--settings--input-lineWidth" value="12"
+      min="1" max="100" oninput="lineWidthOut.value = lineWidth.value">
+    <output id="lineWidthOut">100</output>
+    <label for="fontSize">Pick font size</label>
+    <input id="fontSize" type="number" value="12"
+      class="sidebar--settings--input sidebar--settings--input-fontSize" />
+    <select id="fontType" class="sidebar--settings--input sidebar--settings--input-fontType">
+      <option value="Arial">Arial</option>
+      <option value="Helvetica">Helvetica</option>
+      <option value="Courier">Courier</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Times New Roman">Times New Roman</option>
+    </select>
+    <input type="text" placeholder="Type, then click on canvas"
+      class="sidebar--settings--input sidebar--settings--input-text" /> -->
+  </nav>
   <aside class="sidebar sidebar--left">
     <div class="logo"></div>
     <section class="sidebar--tool_list">
@@ -47,18 +93,16 @@
       <input type="button" value="Load" class="btn btn--load" />
     </section>
   </aside>
-  <canvas id="canvas" class="canvas" width="1520" height="938"></canvas>
-  <aside id="sidebar__right" class="sidebar sidebar__right sidebar__right__Small">
+  <div class="canvas--container">
+    <canvas id="canvas" class="canvas" width="1000" height="600"></canvas>
+  </div>
+  <!-- <aside id="sidebar__right" class="sidebar sidebar__right sidebar__right__Small">
     <section class="sidebar--settings">
-      <label for="color">Pick color</label><br>
-      <input id="color" type="color" class="sidebar--settings--input sidebar--settings--input-color" />
-      <label for="lineWidth">Pick line width</label><br>
-      <input type="range" id="lineWidth" class="sidebar--settings--input sidebar--settings--input-lineWidth" value="12"
-        min="1" max="100" oninput="lineWidthOut.value = lineWidth.value">
-      <output id="lineWidthOut">100</output>
+      
       <label for="fontSize">Pick font size</label><br>
       <input id="fontSize" type="number" value="12"
         class="sidebar--settings--input sidebar--settings--input-fontSize" />
+      
       <select id="fontType" class="sidebar--settings--input sidebar--settings--input-fontType">
         <option value="Arial">Arial</option>
         <option value="Helvetica">Helvetica</option>
@@ -66,16 +110,17 @@
         <option value="Verdana">Verdana</option>
         <option value="Times New Roman">Times New Roman</option>
       </select>
+      
       <input type="text" placeholder="Type, then click on canvas"
         class="sidebar--settings--input sidebar--settings--input-text" />
-    </section>
+    
+      </section>
     <i id="sidebar--arrow" onclick="changeSidebarRightSize()" class="fas fa-chevron-left sidebar--arrow"></i>
-  </aside>
+  </aside> -->
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" charset="utf-8"></script>
 <script src="js/shapes.js" charset="utf-8"></script>
 <script src="js/drawio.js" charset="utf-8"></script>
-
-<script src="js/styles.js"></script>
+<script src="js/style.js" charset="utf-8"></script>
 
 </html>

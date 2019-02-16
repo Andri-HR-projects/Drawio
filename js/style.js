@@ -1,6 +1,8 @@
+/**
+ */
 function changeSidebarRightSize() {
-  var sidebar = document.getElementById('sidebar__right');
-  var arrow = document.getElementById('sidebar--arrow');
+  let sidebar = document.getElementById('sidebar__right');
+  let arrow = document.getElementById('sidebar--arrow');
   if (
     sidebar.classList.contains('sidebar__large') ||
     sidebar.classList.contains('sidebar__small')
@@ -13,12 +15,4 @@ function changeSidebarRightSize() {
     sidebar.classList.toggle('sidebar__large');
     arrow.classList.toggle('sidebar--arrow__right');
   }
-}
-
-function changeActive(tool) {
-  var active = document.getElementsByClassName('btn__active');
-  active[0].classList.toggle('btn__active');
-
-  var newActive = document.getElementById(tool);
-  newActive.classList.add('btn__active');
 }
