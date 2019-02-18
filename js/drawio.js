@@ -9,7 +9,9 @@ window.drawio = {
   shapes: [],
   Xcord: [],
   Ycord: [],
-  selectedShape: 'rectangle', // !FIXME
+  undo: [],
+  redo: [],
+  selectedShape: 'pencil',
   canvas: document.getElementById('canvas'),
   ctx: document.getElementById('canvas').getContext('2d'),
   selectedElement: null,
@@ -17,6 +19,8 @@ window.drawio = {
     RECTANGLE: 'rectangle',
     CIRCLE: 'circle',
     PENCIL: 'pencil',
+    ERASER: 'eraser',
+    // TODO: add line, text, move, eraser
   },
   selectedColor: '#000',
   selectedFill: true,
@@ -31,14 +35,17 @@ $(function() {
   /**
    */
   function drawCanvas() {
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+    drawio.ctx.globalCompositeOperation = 'destination-over';
     if (drawio.selectedElement) {
       drawio.selectedElement.render();
     }
-    for (let i = 0; i < drawio.shapes.length; i++) {
+    for (let i = drawio.shapes.length - 1; i >= 0; i--) {
       drawio.shapes[i].render();
     }
   }
 
+  // !Enlarge and shrink sidebar on arrowclick
   $('.sidebar--arrow').on('click', function() {
     const sidebar = document.getElementById('sidebar__right');
     const arrow = document.getElementById('sidebar--arrow');
@@ -56,40 +63,50 @@ $(function() {
     }
   });
 
-
+  // Change selectedShape
   $('.sidebar--tool_list--tool').on('click', function() {
     $('.sidebar--tool_list--tool').removeClass('btn__active');
     $(this).addClass('btn__active');
     drawio.selectedShape = $(this).data('tool');
     console.log($(this).data('tool'));
   });
-
+  // Change selectedColor from preset
   $('.nav--container--input--color').on('click', function() {
     drawio.selectedColor = $(this).data('value');
-    $('.nav--container--input--color-active')
-        .removeClass('nav--container--input--color-active');
+    $('.nav--container--input--color-active').removeClass(
+        'nav--container--input--color-active'
+    );
     $($(this)).addClass('nav--container--input--color-active');
   });
-
-  $('.nav--container--input--fill').on('click', function() {
-    drawio.selectedFill = !drawio.selectedFill;
-    $('.nav--container--input--fill')[0].classList
-        .toggle('nav--container--input--fill-filled');
+  // Change selectedColor from type color
+  $('.nav--container--input--customColor').on('change', function() {
+    drawio.selectedColor = $(this)[0].value;
+    $('.nav--container--input--color-active').removeClass(
+        'nav--container--input--color-active'
+    );
+    $($(this)).addClass('nav--container--input--color-active');
   });
-
+  // Change selectedLineWidth
   $('.nav--container--input-lineWidth').on('change', function() {
     drawio.selectedLineWidth = $(this)[0].value;
   });
-
+  // Change selectedFill
+  $('.nav--container--input--fill').on('click', function() {
+    drawio.selectedFill = !drawio.selectedFill;
+    $('.nav--container--input--fill')[0].classList.toggle(
+        'nav--container--input--fill-filled'
+    );
+  });
+  // Change selectedFontSize
   $('.nav--container--input-fontSize').on('change', function() {
     drawio.selectedFontSize = $(this)[0].value + 'px';
   });
-
+  // Change selectedFont
   $('.nav--container--input-fontType').on('change', function() {
     drawio.selectedFontType = $(this)[0].value;
     console.log(drawio.selectedFontType);
   });
-
+  // Change selectedText
   $('.nav--container--input-text').on('change', function() {
     drawio.selectedText = $(this)[0].value;
     console.log(drawio.selectedText);
@@ -120,10 +137,28 @@ $(function() {
       case drawio.availableShapes.PENCIL:
         drawio.Xcord.push(mouseEvent.offsetX);
         drawio.Ycord.push(mouseEvent.offsetY);
-        drawio.selectedElement = new Pencil({
-          x: 0,
-          y: 0,
-        }, drawio.Xcord, drawio.Ycord);
+        drawio.selectedElement = new Pencil(
+            {
+              x: 0,
+              y: 0,
+            },
+            drawio.Xcord,
+            drawio.Ycord,
+            false
+        );
+        break;
+      case drawio.availableShapes.ERASER:
+        drawio.Xcord.push(mouseEvent.offsetX);
+        drawio.Ycord.push(mouseEvent.offsetY);
+        drawio.selectedElement = new Pencil(
+            {
+              x: 0,
+              y: 0,
+            },
+            drawio.Xcord,
+            drawio.Ycord,
+            true
+        );
         break;
     }
   });
@@ -131,14 +166,15 @@ $(function() {
   // mousemove
   $('#canvas').on('mousemove', function(mouseEvent) {
     if (drawio.selectedElement) {
-      if (drawio.selectedShape === 'pencil') {
-        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+      if (
+        drawio.selectedShape === 'pencil' ||
+        drawio.selectedShape === 'eraser'
+      ) {
         // drawCanvas()
         drawio.Xcord.push(mouseEvent.offsetX);
         drawio.Ycord.push(mouseEvent.offsetY);
         drawCanvas();
       } else {
-        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
         drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
         drawCanvas();
       }
@@ -147,7 +183,10 @@ $(function() {
 
   // mouseup
   $('#canvas').on('mouseup', function() {
-    if (drawio.selectedShape === 'pencil') {
+    if (
+      drawio.selectedShape === 'pencil' ||
+      drawio.selectedShape === 'eraser'
+    ) {
       drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;
       drawio.Xcord = [];
@@ -156,5 +195,6 @@ $(function() {
       drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;
     }
+    drawio.redo = [];
   });
 });

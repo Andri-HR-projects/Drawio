@@ -47,27 +47,39 @@
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
 }
-.nav--container-split {
-  grid-template-columns: repeat(6, 1fr);
+.nav--container-four {
+  grid-template-columns: repeat(4, 1fr);
+}
+.nav--container-seven {
+  grid-template-columns: repeat(7, 1fr);
+}
+.nav--container--input {
+  cursor: pointer;
+  margin: 5px;
+}
+.nav--container--input--number {
+  width: 60px;
 }
 .nav--container--input--lable {
   width: 80px;
-  margin: 5px;
 }
 .nav--container--input--fill {
   width: 32px;
   height: 32px;
-  margin: 5px;
   border-radius: 6px;
   border: 3px solid #e7e7e7;
 }
 .nav--container--input--fill-filled {
   background-color: #e7e7e7;
 }
+.nav--container--input--customColor {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
 .nav--container--input--color {
   width: 32px;
   height: 32px;
-  margin: 5px;
   border-radius: 6px;
 }
 .nav--container--input--color-active {
@@ -77,16 +89,16 @@
   background-color: #000000;
 }
 .nav--container--input--color-red {
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 .nav--container--input--color-yellow {
-  background-color: #FFFF00;
+  background-color: #ffff00;
 }
 .nav--container--input--color-green {
   background-color: #008000;
 }
 .nav--container--input--color-blue {
-  background-color: #0000FF;
+  background-color: #0000ff;
 }
 .nav--container--input--color-orange {
   background-color: #cc5500;
@@ -94,6 +106,9 @@
 input[type="color"] {
   padding: 0;
   border: none;
+}
+input[type="color"].nav--container--input--color-active {
+  border: 3px solid #e7e7e7;
 }
 input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 0;
@@ -103,7 +118,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 .body {
   display: grid;
-  grid-template-rows: 80px 1fr;
+  grid-template-rows: 150px 1fr;
   grid-template-columns: 300px 1fr;
   align-items: center;
   justify-items: center;
@@ -120,6 +135,7 @@ input[type="color"]::-webkit-color-swatch {
   background-size: 100%;
   width: 100px;
   height: 100px;
+  margin-top: 30px;
 }
 .btn {
   padding: 8px 12px;
@@ -149,6 +165,7 @@ input[type="color"]::-webkit-color-swatch {
   display: grid;
 }
 .sidebar__left {
+  grid-row: 1 / 5;
   grid-template-rows: 2fr 1fr;
 }
 .sidebar__right {
@@ -169,6 +186,7 @@ input[type="color"]::-webkit-color-swatch {
   float: left;
 }
 .sidebar--settings--input {
+  cursor: pointer;
   width: 250px;
   padding: 0;
   margin: 0;
