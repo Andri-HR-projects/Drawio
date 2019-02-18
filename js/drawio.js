@@ -107,9 +107,11 @@ $(function() {
   });
   // Undo shapes
   $('.sidebar--toolList--tool-undo').on('click', function() {
-    drawio.redoShapes.push(drawio.shapes.pop());
-    console.log(drawio.redo);
-    drawCanvas();
+    if (drawio.shapes.length) {
+      drawio.redoShapes.push(drawio.shapes.pop());
+      console.log(drawio.redo);
+      drawCanvas();
+    }
   });
   // Redo shapes
   $('.sidebar--toolList--tool-redo').on('click', function() {
