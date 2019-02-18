@@ -72,14 +72,14 @@
           type="number"
           id="width"
           class="nav--container--input nav--container--input--number"
-          value="1000"
+          value="400"
         />
         <p>px</p>
         <input
           type="number"
           id="height"
           class="nav--container--input nav--container--input--number"
-          value="600"
+          value="200"
         />
         <p>px</p>
       </div>
@@ -99,45 +99,52 @@
       class="sidebar--settings--input sidebar--settings--input-text" /> -->
 
     <aside class="sidebar sidebar--left">
-      <section class="sidebar--tool_list">
-        <p data-tool="pencil" class="sidebar--tool_list--tool btn btn__active">
-          <i class="fas fa-pencil-alt sidebar--tool_list--tool--icon"></i>Pencil
-        </p>
-        <p data-tool="eraser" class="sidebar--tool_list--tool btn">
-          <i class="fas fa-eraser sidebar--tool_list--tool--icon"></i>Eraser
-        </p>
-        <p data-tool="circle" class="sidebar--tool_list--tool btn">
-          <i class="fas fa-circle sidebar--tool_list--tool--icon"></i>Circle
-        </p>
-        <p data-tool="rectangle" class="sidebar--tool_list--tool btn">
-          <i class="fas fa-square sidebar--tool_list--tool--icon"></i>Square
-        </p>
-        <p data-tool="line" class="sidebar--tool_list--tool btn">
-          <i class="fas fa-arrows-alt-h sidebar--tool_list--tool--icon"></i>Line
-        </p>
-        <p data-tool="text" class="sidebar--tool_list--tool btn">
-          <i class="fas fa-font sidebar--tool_list--tool--icon"></i>Text
-        </p>
-        <p data-tool="move" class="sidebar--tool_list--tool btn">
-          <i class="fas fa-hand-paper sidebar--tool_list--tool--icon"></i>Move
-        </p>
-        <!-- TODO: Add eraser -->
+      <section class="sidebar--toolList">
+        <div data-tool="pencil" class="sidebar--toolList--tool btn btn__active">
+          <i class="fas fa-pencil-alt sidebar--toolList--tool--icon"></i>Pencil
+        </div>
+        <div data-tool="eraser" class="sidebar--toolList--tool btn">
+          <i class="fas fa-eraser sidebar--toolList--tool--icon"></i>Eraser
+        </div>
+        <div data-tool="circle" class="sidebar--toolList--tool btn">
+          <i class="fas fa-circle sidebar--toolList--tool--icon"></i>Circle
+        </div>
+        <div data-tool="rectangle" class="sidebar--toolList--tool btn">
+          <i class="fas fa-square sidebar--toolList--tool--icon"></i>Square
+        </div>
+        <div data-tool="line" class="sidebar--toolList--tool btn">
+          <i class="fas fa-arrows-alt-h sidebar--toolList--tool--icon"></i>Line
+        </div>
+        <div data-tool="text" class="sidebar--toolList--tool btn">
+          <i class="fas fa-font sidebar--toolList--tool--icon"></i>Text
+        </div>
+        <div data-tool="move" class="sidebar--toolList--tool btn">
+          <i class="fas fa-hand-paper sidebar--toolList--tool--icon"></i>Move
+        </div>
       </section>
-      <section class="sidebar--tool_list">
-        <i class="fas fa-redo sidebar--tool_list--tool"></i>
-        <i class="fas fa-undo sidebar--tool_list--tool"></i>
-        <input type="button" value="Save" class="btn btn--save" />
-        <select class="sidebar--tool_list--select">
-          <option class="sidebar--tool_list--select--option" value="volvo"
+      <section class="sidebar--toolList sidebar--toolList-bottom">
+        <div class="sidebar--toolList--tool sidebar--toolList--tool-redo">
+          <i class="fas fa-redo"></i>
+        </div>
+        <div class="sidebar--toolList--tool sidebar--toolList--tool-undo">
+          <i class="fas fa-undo"></i>
+        </div>
+        <input
+          type="button"
+          value="Save"
+          class="btn btn--save sidebar--toolList--tool-save"
+        />
+        <select class="sidebar--toolList--select">
+          <option class="sidebar--toolList--select--option" value="volvo"
             >Volvo</option
           >
-          <option class="sidebar--tool_list--select--option" value="saab"
+          <option class="sidebar--toolList--select--option" value="saab"
             >Saab</option
           >
-          <option class="sidebar--tool_list--select--option" value="mercedes"
+          <option class="sidebar--toolList--select--option" value="mercedes"
             >Mercedes</option
           >
-          <option class="sidebar--tool_list--select--option" value="audi"
+          <option class="sidebar--toolList--select--option" value="audi"
             >Audi</option
           >
         </select>
@@ -175,5 +182,5 @@
   ></script>
   <script src="js/shapes.js" charset="utf-8"></script>
   <script src="js/drawio.js" charset="utf-8"></script>
-  <script src="js/style.js" charset="utf-8"></script>
+  <script src="js/setup.js" charset="utf-8"></script>
 </html>

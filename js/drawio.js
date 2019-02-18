@@ -2,13 +2,12 @@
     Structure for the assignment 2 project
 */
 
-// 1. Define a function namespave called drawio
+// 1. Define a function namespace called drawio
 
 // 2. Create an array to hold on the the shapes currently drawn
 window.drawio = {
   shapes: [],
-  undo: [],
-  redo: [],
+  redoShapes: [],
   selectedShape: 'pencil',
   canvas: document.getElementById('canvas'),
   ctx: document.getElementById('canvas').getContext('2d'),
@@ -19,7 +18,7 @@ window.drawio = {
     PENCIL: 'pencil',
     ERASER: 'eraser',
     LINE: 'line',
-    // TODO: add line, text, move
+    // TODO: add text, move
   },
   selectedColor: '#000',
   selectedFill: true,
@@ -43,18 +42,7 @@ $(function() {
       drawio.shapes[i].render();
     }
   }
-
-  // Resize canvas
-  $('.nav--container--input--number').on('change', function() {
-    const width = document.getElementById('width').value;
-    const height = document.getElementById('height').value;
-    console.log(drawio.canvas);
-    $(drawio.canvas).prop('width', width);
-    $(drawio.canvas).prop('height', height);
-    drawCanvas();
-  });
-
-  // !Enlarge and shrink sidebar on arrowclick
+  // !Enlarge and shrink sidebar on arrow click
   $('.sidebar--arrow').on('click', function() {
     const sidebar = document.getElementById('sidebar__right');
     const arrow = document.getElementById('sidebar--arrow');
@@ -77,7 +65,6 @@ $(function() {
     $('.sidebar--tool_list--tool').removeClass('btn__active');
     $(this).addClass('btn__active');
     drawio.selectedShape = $(this).data('tool');
-    console.log($(this).data('tool'));
   });
   // Change selectedColor from preset
   $('.nav--container--input--color').on('click', function() {
@@ -106,11 +93,6 @@ $(function() {
         'nav--container--input--fill-filled'
     );
   });
-  // Clear canvas
-  $('.nav--container--input-clear').on('click', function() {
-    drawio.shapes = [];
-    drawCanvas();
-  });
   // Change selectedFontSize
   $('.nav--container--input-fontSize').on('change', function() {
     drawio.selectedFontSize = $(this)[0].value + 'px';
@@ -118,12 +100,37 @@ $(function() {
   // Change selectedFont
   $('.nav--container--input-fontType').on('change', function() {
     drawio.selectedFontType = $(this)[0].value;
-    console.log(drawio.selectedFontType);
   });
   // Change selectedText
   $('.nav--container--input-text').on('change', function() {
     drawio.selectedText = $(this)[0].value;
-    console.log(drawio.selectedText);
+  });
+  // Undo shapes
+  $('.sidebar--toolList--tool-undo').on('click', function() {
+    drawio.redoShapes.push(drawio.shapes.pop());
+    console.log(drawio.redo);
+    drawCanvas();
+  });
+  // Redo shapes
+  $('.sidebar--toolList--tool-redo').on('click', function() {
+    if (drawio.redoShapes.length) {
+      console.log(drawio.shapes);
+      drawio.shapes.push(drawio.redo.pop());
+      drawCanvas();
+    }
+  });
+  // Clear canvas
+  $('.nav--container--input-clear').on('click', function() {
+    drawio.shapes = [];
+    drawCanvas();
+  });
+  // Resize canvas
+  $('.nav--container--input--number').on('change', function() {
+    const width = document.getElementById('width').value;
+    const height = document.getElementById('height').value;
+    $(drawio.canvas).prop('width', width);
+    $(drawio.canvas).prop('height', height);
+    drawCanvas();
   });
 
   // mousedown
@@ -186,6 +193,14 @@ $(function() {
     }
   });
 
+  // mouseleave
+  $('#canvas').on('mouseleave', function(mouseEvent) {
+    if (drawio.selectedElement) {
+      drawio.shapes.push(drawio.selectedElement);
+      drawio.selectedElement = null;
+    }
+  });
+
   // mouseup
   $('#canvas').on('mouseup', function() {
     if (drawio.selectedElement) {
@@ -193,5 +208,6 @@ $(function() {
       drawio.selectedElement = null;
     }
     drawio.redo = [];
+    console.log(drawio.redo);
   });
 });

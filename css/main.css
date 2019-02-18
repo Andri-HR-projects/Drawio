@@ -30,6 +30,12 @@
     transform: rotate(180deg);
   }
 }
+select {
+  border: solid 1px #505050;
+  border-radius: 6px;
+  padding: 5px;
+  margin-left: 32px;
+}
 .nav {
   grid-column: 1 / 3;
   width: 100%;
@@ -166,79 +172,29 @@ input[type="color"]::-webkit-color-swatch {
   font-size: 16px;
   display: grid;
 }
-.sidebar__left {
-  grid-row: 1 / 5;
-  grid-template-rows: 2fr 1fr;
+.sidebar--left {
+  grid-row: 2 / 5;
+  grid-template-rows: 3fr 2fr;
 }
-.sidebar__right {
-  grid-template-rows: 1fr 1fr;
-  overflow: hidden;
-}
-.sidebar__right__Small {
-  width: 100px;
-  z-index: 1;
-  justify-self: right;
-}
-.sidebar__right__Small .sidebar--settings {
-  float: left;
-  display: none;
-}
-.sidebar--settings {
-  width: 250px;
-  float: left;
-}
-.sidebar--settings--input {
-  cursor: pointer;
-  width: 250px;
-  padding: 0;
-  margin: 0;
-}
-.sidebar--settings--input-lineWidth {
-  width: 220px;
-}
-.sidebar--settings--input-fontSize {
-  width: 60px;
-}
-.sidebar--tool_list {
+.sidebar--toolList {
   width: 100%;
   display: grid;
   justify-items: center;
+  grid-gap: 10px;
 }
-.sidebar--tool_list--tool {
+.sidebar--toolList-bottom {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+}
+.sidebar--toolList--tool {
   width: 70%;
-}
-.sidebar--tool_list--tool--icon {
-  margin-right: 20px;
-}
-.sidebar.sidebar__large {
-  animation-name: sidebar-large;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-.sidebar.sidebar__large .sidebar--settings {
-  display: block;
-}
-.sidebar.sidebar__small {
-  animation-name: sidebar-small;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-.sidebar.sidebar__small .sidebar--settings {
-  display: none;
-}
-.sidebar--arrow {
-  position: absolute;
-  top: 50%;
-  margin-left: 20px;
   cursor: pointer;
 }
-.sidebar--arrow__right {
-  animation-name: arrow-right;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+.sidebar--toolList--tool-save {
+  grid-column: 1 / 3;
+  width: 70%;
 }
-.sidebar--arrow__left {
-  animation-name: arrow-left;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+.sidebar--toolList--tool--icon {
+  margin-right: 20px;
 }

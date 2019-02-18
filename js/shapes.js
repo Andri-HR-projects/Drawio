@@ -12,7 +12,6 @@ Shape.prototype.render = function() {};
 Shape.prototype.move = function(position) {
   this.position = position;
 };
-
 Shape.prototype.resize = function() {};
 
 /**
@@ -126,4 +125,29 @@ Pencil.prototype.resize = function(x, y) {
   this.preCords = this.nextCords;
   this.nextCords = {x, y};
   this.index++;
+};
+
+/**
+ * @param  {Object} position
+ * @param  {Object} endpoint
+ */
+function Line(position, endpoint) {
+  Shape.call(this, position);
+  this.endCords = position;
+}
+
+Line.prototype = Object.create(Shape.prototype);
+Line.prototype.constructor = Line;
+
+Line.prototype.render = function() {
+  drawio.ctx.beginPath();
+  drawio.ctx.lineWidth = this.lineWidth;
+  drawio.ctx.strokeStyle = this.color;
+  drawio.ctx.moveTo(this.position.x, this.position.y);
+  drawio.ctx.lineTo(this.endCords.x, this.endCords.y);
+  drawio.ctx.stroke();
+};
+
+Line.prototype.resize = function(x, y) {
+  this.endCords = {x, y};
 };
