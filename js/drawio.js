@@ -115,7 +115,7 @@ $(function() {
   $('.sidebar--toolList--tool-redo').on('click', function() {
     if (drawio.redoShapes.length) {
       console.log(drawio.shapes);
-      drawio.shapes.push(drawio.redo.pop());
+      drawio.shapes.push(drawio.redoShapes.pop());
       drawCanvas();
     }
   });
