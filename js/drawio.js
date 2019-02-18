@@ -7,8 +7,6 @@
 // 2. Create an array to hold on the the shapes currently drawn
 window.drawio = {
   shapes: [],
-  Xcord: [],
-  Ycord: [],
   undo: [],
   redo: [],
   selectedShape: 'pencil',
@@ -20,7 +18,8 @@ window.drawio = {
     CIRCLE: 'circle',
     PENCIL: 'pencil',
     ERASER: 'eraser',
-    // TODO: add line, text, move, eraser
+    LINE: 'line',
+    // TODO: add line, text, move
   },
   selectedColor: '#000',
   selectedFill: true,
@@ -44,6 +43,16 @@ $(function() {
       drawio.shapes[i].render();
     }
   }
+
+  // Resize canvas
+  $('.nav--container--input--number').on('change', function() {
+    const width = document.getElementById('width').value;
+    const height = document.getElementById('height').value;
+    console.log(drawio.canvas);
+    $(drawio.canvas).prop('width', width);
+    $(drawio.canvas).prop('height', height);
+    drawCanvas();
+  });
 
   // !Enlarge and shrink sidebar on arrowclick
   $('.sidebar--arrow').on('click', function() {
@@ -97,6 +106,11 @@ $(function() {
         'nav--container--input--fill-filled'
     );
   });
+  // Clear canvas
+  $('.nav--container--input-clear').on('click', function() {
+    drawio.shapes = [];
+    drawCanvas();
+  });
   // Change selectedFontSize
   $('.nav--container--input-fontSize').on('change', function() {
     drawio.selectedFontSize = $(this)[0].value + 'px';
@@ -135,29 +149,30 @@ $(function() {
         );
         break;
       case drawio.availableShapes.PENCIL:
-        drawio.Xcord.push(mouseEvent.offsetX);
-        drawio.Ycord.push(mouseEvent.offsetY);
         drawio.selectedElement = new Pencil(
             {
-              x: 0,
-              y: 0,
+              x: mouseEvent.offsetX,
+              y: mouseEvent.offsetY,
             },
-            drawio.Xcord,
-            drawio.Ycord,
             false
         );
         break;
       case drawio.availableShapes.ERASER:
-        drawio.Xcord.push(mouseEvent.offsetX);
-        drawio.Ycord.push(mouseEvent.offsetY);
         drawio.selectedElement = new Pencil(
             {
-              x: 0,
-              y: 0,
+              x: mouseEvent.offsetX,
+              y: mouseEvent.offsetY,
             },
-            drawio.Xcord,
-            drawio.Ycord,
             true
+        );
+        break;
+      case drawio.availableShapes.LINE:
+        drawio.selectedElement = new Line(
+            {
+              x: mouseEvent.offsetX,
+              y: mouseEvent.offsetY,
+            },
+            0
         );
         break;
     }
@@ -166,32 +181,14 @@ $(function() {
   // mousemove
   $('#canvas').on('mousemove', function(mouseEvent) {
     if (drawio.selectedElement) {
-      if (
-        drawio.selectedShape === 'pencil' ||
-        drawio.selectedShape === 'eraser'
-      ) {
-        // drawCanvas()
-        drawio.Xcord.push(mouseEvent.offsetX);
-        drawio.Ycord.push(mouseEvent.offsetY);
-        drawCanvas();
-      } else {
-        drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-        drawCanvas();
-      }
+      drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+      drawCanvas();
     }
   });
 
   // mouseup
   $('#canvas').on('mouseup', function() {
-    if (
-      drawio.selectedShape === 'pencil' ||
-      drawio.selectedShape === 'eraser'
-    ) {
-      drawio.shapes.push(drawio.selectedElement);
-      drawio.selectedElement = null;
-      drawio.Xcord = [];
-      drawio.Ycord = [];
-    } else {
+    if (drawio.selectedElement) {
       drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;
     }

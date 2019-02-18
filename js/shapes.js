@@ -25,36 +25,10 @@ function Rectangle(position, width, height) {
   this.width = width;
   this.height = height;
 }
-/**
- * @param  {Object} position x and y cords
- * @param  {Number} radius calculated using pythagoras of delta mouse movement
- */
-function Circle(position, radius) {
-  Shape.call(this, position);
-  this.radius = radius;
-}
-/**
- * @param  {Object} position {x , y cords}
- * @param  {Number} deltaX delta x of  mouse movement
- * @param  {Number} deltaY delta y of mouse movement
- * @param  {Boolean} eraser if eraser is choosen
- */
-function Pencil(position, deltaX, deltaY, eraser) {
-  Shape.call(this, position, this.color, this.lineWidth);
-  this.deltaX = deltaX;
-  this.deltaY = deltaY;
-  this.eraser = eraser;
-}
 
 // Assign the prototype
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
-
-Circle.prototype = Object.create(Shape.prototype);
-Circle.prototype.constructor = Circle;
-
-Pencil.prototype = Object.create(Shape.prototype);
-Pencil.prototype.constructor = Pencil;
 
 Rectangle.prototype.render = function() {
   // Render a rectangle
@@ -78,6 +52,23 @@ Rectangle.prototype.render = function() {
   }
 };
 
+Rectangle.prototype.resize = function(x, y) {
+  this.width = x - this.position.x;
+  this.height = y - this.position.y;
+};
+
+/**
+ * @param  {Object} position x and y cords
+ * @param  {Number} radius calculated using pythagoras of delta mouse movement
+ */
+function Circle(position, radius) {
+  Shape.call(this, position);
+  this.radius = radius;
+}
+
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+
 Circle.prototype.render = function() {
   drawio.ctx.beginPath();
   drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
@@ -91,31 +82,48 @@ Circle.prototype.render = function() {
   }
 };
 
-Pencil.prototype.render = function() {
-  if (this.eraser) {
-    drawio.ctx.strokeStyle = '#fff';
-  } else {
-    drawio.ctx.strokeStyle = this.color;
-  }
-  drawio.ctx.lineWidth = this.lineWidth;
-  drawio.ctx.beginPath();
-  drawio.ctx.moveTo(this.deltaX[0], this.deltaY[0]);
-  for (let i = 1; i <= this.deltaX.length; i++) {
-    drawio.ctx.lineTo(this.deltaX[i], this.deltaY[i]);
-  }
-  drawio.ctx.stroke();
-  drawio.ctx.closePath();
-};
-
-Rectangle.prototype.resize = function(x, y) {
-  this.width = x - this.position.x;
-  this.height = y - this.position.y;
-};
-
 Circle.prototype.resize = function(x, y) {
   this.radius = Math.sqrt(
       Math.pow(x - this.position.x, 2) + Math.pow(y - this.position.y, 2)
   );
 };
 
-// No resize required for pencil
+/**
+ * @param  {Object} position {x , y cords}
+ * @param  {Boolean} eraser if eraser is chosen
+ */
+function Pencil(position, eraser) {
+  Shape.call(this, position);
+  this.preCords = position;
+  this.nextCords = position;
+  this.cords = [];
+  this.cords[0] = position;
+  this.index = 1;
+  this.eraser = eraser;
+}
+
+Pencil.prototype = Object.create(Shape.prototype);
+Pencil.prototype.constructor = Pencil;
+
+Pencil.prototype.render = function() {
+  drawio.ctx.beginPath();
+  if (this.eraser) {
+    drawio.ctx.strokeStyle = '#fff';
+  } else {
+    drawio.ctx.strokeStyle = this.color;
+  }
+  drawio.ctx.lineWidth = this.lineWidth;
+  drawio.ctx.moveTo(this.cords[0].x, this.cords[0].y);
+  for (let i = 0; i < this.index - 1; i++) {
+    drawio.ctx.lineTo(this.cords[i + 1].x, this.cords[i + 1].y);
+  }
+  drawio.ctx.stroke();
+  drawio.ctx.closePath();
+};
+
+Pencil.prototype.resize = function(x, y) {
+  this.cords[this.index] = {x, y};
+  this.preCords = this.nextCords;
+  this.nextCords = {x, y};
+  this.index++;
+};

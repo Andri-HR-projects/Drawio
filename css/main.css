@@ -129,6 +129,8 @@ input[type="color"]::-webkit-color-swatch {
 .canvas--container {
   background-color: white;
   box-shadow: 0 0 16px rgba(33, 33, 33, 0.9);
+  align-self: flex-start;
+  justify-self: flex-start;
 }
 .logo {
   background-image: url(/assets/skull-col.png);
