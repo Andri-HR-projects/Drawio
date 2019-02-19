@@ -61,8 +61,8 @@ $(function() {
   });
 
   // Change selectedShape
-  $('.sidebar--tool_list--tool').on('click', function() {
-    $('.sidebar--tool_list--tool').removeClass('btn__active');
+  $('.sidebar--toolList--tool').on('click', function() {
+    $('.sidebar--toolList--tool').removeClass('btn__active');
     $(this).addClass('btn__active');
     drawio.selectedShape = $(this).data('tool');
   });
