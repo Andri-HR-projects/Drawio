@@ -198,8 +198,13 @@ $(function() {
   // mouseleave
   $('#canvas').on('mouseleave', function(mouseEvent) {
     if (drawio.selectedElement) {
-      drawio.shapes.push(drawio.selectedElement);
-      drawio.selectedElement = null;
+      if (
+        drawio.selectedElement.constructor.name === 'Pencil' ||
+        drawio.selectedElement.constructor.name === 'Eraser'
+      ) {
+        drawio.shapes.push(drawio.selectedElement);
+        drawio.selectedElement = null;
+      }
     }
   });
 
@@ -210,6 +215,5 @@ $(function() {
       drawio.selectedElement = null;
     }
     drawio.redo = [];
-    console.log(drawio.redo);
   });
 });
