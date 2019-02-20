@@ -18,6 +18,7 @@ window.drawio = {
     PENCIL: 'pencil',
     ERASER: 'eraser',
     LINE: 'line',
+    TEXT: 'text',
     // TODO: add text, move
   },
   selectedColor: '#000',
@@ -28,7 +29,7 @@ window.drawio = {
   selectedText: ' ',
 };
 
-$(function() {
+$(function () {
   // Document is loaded and parsed
   /**
    */
@@ -43,7 +44,7 @@ $(function() {
     }
   }
   // !Enlarge and shrink sidebar on arrow click
-  $('.sidebar--arrow').on('click', function() {
+  $('.sidebar--arrow').on('click', function () {
     const sidebar = document.getElementById('sidebar__right');
     const arrow = document.getElementById('sidebar--arrow');
     if (
@@ -61,52 +62,58 @@ $(function() {
   });
 
   // Change selectedShape
-  $('.sidebar--toolList--tool').on('click', function() {
-    $('.sidebar--toolList--tool').removeClass('btn__active');
+  $('.btn-tool').on('click', function () {
+    if (drawio.selectedShape == "text") {
+      $('#textHider').addClass('hidden');
+    }
+    $('.btn-tool').removeClass('btn__active');
     $(this).addClass('btn__active');
     drawio.selectedShape = $(this).data('tool');
+    if (drawio.selectedShape == "text") {
+      $('#textHider').removeClass('hidden');
+    }
   });
   // Change selectedColor from preset
-  $('.nav--container--input--color').on('click', function() {
+  $('.nav--container--input--color').on('click', function () {
     drawio.selectedColor = $(this).data('value');
     $('.nav--container--input--color-active').removeClass(
-        'nav--container--input--color-active'
+      'nav--container--input--color-active'
     );
     $($(this)).addClass('nav--container--input--color-active');
   });
   // Change selectedColor from type color
-  $('.nav--container--input--customColor').on('change', function() {
+  $('.nav--container--input--customColor').on('change', function () {
     drawio.selectedColor = $(this)[0].value;
     $('.nav--container--input--color-active').removeClass(
-        'nav--container--input--color-active'
+      'nav--container--input--color-active'
     );
     $($(this)).addClass('nav--container--input--color-active');
   });
   // Change selectedLineWidth
-  $('.nav--container--input-lineWidth').on('change', function() {
+  $('.nav--container--input-lineWidth').on('change', function () {
     drawio.selectedLineWidth = $(this)[0].value;
   });
   // Change selectedFill
-  $('.nav--container--input--fill').on('click', function() {
+  $('.nav--container--input--fill').on('click', function () {
     drawio.selectedFill = !drawio.selectedFill;
     $('.nav--container--input--fill')[0].classList.toggle(
-        'nav--container--input--fill-filled'
+      'nav--container--input--fill-filled'
     );
   });
   // Change selectedFontSize
-  $('.nav--container--input-fontSize').on('change', function() {
+  $('.nav--container--input-fontSize').on('change', function () {
     drawio.selectedFontSize = $(this)[0].value + 'px';
   });
   // Change selectedFont
-  $('.nav--container--input-fontType').on('change', function() {
+  $('.nav--container--input-fontType').on('change', function () {
     drawio.selectedFontType = $(this)[0].value;
   });
   // Change selectedText
-  $('.nav--container--input-text').on('change', function() {
+  $('.nav--container--input-text').on('change', function () {
     drawio.selectedText = $(this)[0].value;
   });
   // Undo shapes
-  $('.sidebar--toolList--tool-undo').on('click', function() {
+  $('.sidebar--toolList--tool-undo').on('click', function () {
     if (drawio.shapes.length) {
       drawio.redoShapes.push(drawio.shapes.pop());
       console.log(drawio.redo);
@@ -114,7 +121,7 @@ $(function() {
     }
   });
   // Redo shapes
-  $('.sidebar--toolList--tool-redo').on('click', function() {
+  $('.sidebar--toolList--tool-redo').on('click', function () {
     if (drawio.redoShapes.length) {
       console.log(drawio.shapes);
       drawio.shapes.push(drawio.redoShapes.pop());
@@ -122,12 +129,12 @@ $(function() {
     }
   });
   // Clear canvas
-  $('.nav--container--input-clear').on('click', function() {
+  $('.nav--container--input-clear').on('click', function () {
     drawio.shapes = [];
     drawCanvas();
   });
   // Resize canvas
-  $('.nav--container--input--number').on('change', function() {
+  $('.nav--container--input--number').on('change', function () {
     const width = document.getElementById('width').value;
     const height = document.getElementById('height').value;
     $(drawio.canvas).prop('width', width);
@@ -136,59 +143,59 @@ $(function() {
   });
 
   // mousedown
-  $('#canvas').on('mousedown', function(mouseEvent) {
+  $('#canvas').on('mousedown', function (mouseEvent) {
     switch (drawio.selectedShape) {
       case drawio.availableShapes.RECTANGLE:
         drawio.selectedElement = new Rectangle(
-            {
-              x: mouseEvent.offsetX,
-              y: mouseEvent.offsetY,
-            },
-            0,
-            0
+          {
+            x: mouseEvent.offsetX,
+            y: mouseEvent.offsetY,
+          },
+          0,
+          0
         );
         break;
       case drawio.availableShapes.CIRCLE:
         drawio.selectedElement = new Circle(
-            {
-              x: mouseEvent.offsetX,
-              y: mouseEvent.offsetY,
-            },
-            0
+          {
+            x: mouseEvent.offsetX,
+            y: mouseEvent.offsetY,
+          },
+          0
         );
         break;
       case drawio.availableShapes.PENCIL:
         drawio.selectedElement = new Pencil(
-            {
-              x: mouseEvent.offsetX,
-              y: mouseEvent.offsetY,
-            },
-            false
+          {
+            x: mouseEvent.offsetX,
+            y: mouseEvent.offsetY,
+          },
+          false
         );
         break;
       case drawio.availableShapes.ERASER:
         drawio.selectedElement = new Pencil(
-            {
-              x: mouseEvent.offsetX,
-              y: mouseEvent.offsetY,
-            },
-            true
+          {
+            x: mouseEvent.offsetX,
+            y: mouseEvent.offsetY,
+          },
+          true
         );
         break;
       case drawio.availableShapes.LINE:
         drawio.selectedElement = new Line(
-            {
-              x: mouseEvent.offsetX,
-              y: mouseEvent.offsetY,
-            },
-            0
+          {
+            x: mouseEvent.offsetX,
+            y: mouseEvent.offsetY,
+          },
+          0
         );
         break;
     }
   });
 
   // mousemove
-  $('#canvas').on('mousemove', function(mouseEvent) {
+  $('#canvas').on('mousemove', function (mouseEvent) {
     if (drawio.selectedElement) {
       drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
       drawCanvas();
@@ -196,7 +203,7 @@ $(function() {
   });
 
   // mouseleave
-  $('#canvas').on('mouseleave', function(mouseEvent) {
+  $('#canvas').on('mouseleave', function (mouseEvent) {
     if (drawio.selectedElement) {
       if (
         drawio.selectedElement.constructor.name === 'Pencil' ||
@@ -204,12 +211,13 @@ $(function() {
       ) {
         drawio.shapes.push(drawio.selectedElement);
         drawio.selectedElement = null;
+        drawio.redo = [];
       }
     }
   });
 
   // mouseup
-  $('#canvas').on('mouseup', function() {
+  $('#canvas').on('mouseup', function () {
     if (drawio.selectedElement) {
       drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;

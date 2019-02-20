@@ -1,91 +1,56 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" href="assets/favicon.ico" />
-    <link rel="stylesheet" href="css/main.css" />
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
-      integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
-      crossorigin="anonymous"
-    ></script>
-    <title>Drawio</title>
-  </head>
 
-  <body class="body">
-    <nav class="nav">
-      <div class="logo"></div>
-      <div class="nav--container nav--container-seven">
-        <div
-          class="nav--container--input nav--container--input--color nav--container--input--color-black nav--container--input--color-active"
-          data-value="#000000"
-        ></div>
-        <div
-          class="nav--container--input nav--container--input--color nav--container--input--color-red"
-          data-value="#FF0000"
-        ></div>
-        <div
-          class="nav--container--input nav--container--input--color nav--container--input--color-yellow"
-          data-value="#FFFF00"
-        ></div>
-        <div
-          class="nav--container--input nav--container--input--color nav--container--input--color-green"
-          data-value="#008000"
-        ></div>
-        <div
-          class="nav--container--input nav--container--input--color nav--container--input--color-blue"
-          data-value="#0000FF"
-        ></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="css/main.css" />
+  <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+    integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+    crossorigin="anonymous"></script>
+  <title>Drawio</title>
+</head>
 
-        <label for="color">Custom</label>
-        <input
-          id="color"
-          type="color"
-          class="nav--container--input nav--container--input--customColor"
-        />
-      </div>
-      <div class="nav--container">
-        <label for="lineWidth">Pick line width</label>
-        <input
-          type="range"
-          id="lineWidth"
-          class="nav--container--input nav--container--input-lineWidth"
-          value="12"
-          min="1"
-          max="100"
-          oninput="lineWidthOut.value = lineWidth.value"
-        />
-        <output id="lineWidthOut">12</output>
-        <label for="fill">Fill</label>
-        <div
-          id="fill"
-          class="nav--container--input nav--container--input--fill nav--container--input--fill-filled"
-        ></div>
-        <p class="nav--container--input nav--container--input-clear">
-          Clear Canvas
-        </p>
-      </div>
-      <div class="nav--container nav--container-four">
-        <input
-          type="number"
-          id="width"
-          class="nav--container--input nav--container--input--number"
-          value="400"
-        />
-        <p>px</p>
-        <input
-          type="number"
-          id="height"
-          class="nav--container--input nav--container--input--number"
-          value="200"
-        />
-        <p>px</p>
-      </div>
-    </nav>
+<body class="body">
+  <nav class="nav">
+    <div class="logo"></div>
+    <div class="nav--container nav--container-seven">
+      <div
+        class="nav--container--input nav--container--input--color nav--container--input--color-black nav--container--input--color-active"
+        data-value="#000000"></div>
+      <div class="nav--container--input nav--container--input--color nav--container--input--color-red"
+        data-value="#FF0000"></div>
+      <div class="nav--container--input nav--container--input--color nav--container--input--color-yellow"
+        data-value="#FFFF00"></div>
+      <div class="nav--container--input nav--container--input--color nav--container--input--color-green"
+        data-value="#008000"></div>
+      <div class="nav--container--input nav--container--input--color nav--container--input--color-blue"
+        data-value="#0000FF"></div>
 
-    <!-- <label for="fontSize">Pick font size</label>
+      <label for="color">Custom</label>
+      <input id="color" type="color" class="nav--container--input nav--container--input--customColor" />
+    </div>
+    <div class="nav--container">
+      <label for="lineWidth">Pick line width</label>
+      <input type="range" id="lineWidth" class="nav--container--input nav--container--input-lineWidth" value="12"
+        min="1" max="100" oninput="lineWidthOut.value = lineWidth.value" />
+      <output id="lineWidthOut">12</output>
+      <label for="fill">Fill</label>
+      <div id="fill" class="nav--container--input nav--container--input--fill nav--container--input--fill-filled"></div>
+      <p class="nav--container--input nav--container--input-clear">
+        Clear Canvas
+      </p>
+    </div>
+    <div class="nav--container nav--container-four">
+      <input type="number" id="width" class="nav--container--input nav--container--input--number" value="1300" />
+      <p>px</p>
+      <input type="number" id="height" class="nav--container--input nav--container--input--number" value="700" />
+      <p>px</p>
+    </div>
+  </nav>
+
+  <!-- <label for="fontSize">Pick font size</label>
     <input id="fontSize" type="number" value="12"
       class="sidebar--settings--input sidebar--settings--input-fontSize" />
     <select id="fontType" class="sidebar--settings--input sidebar--settings--input-fontType">
@@ -98,63 +63,66 @@
     <input type="text" placeholder="Type, then click on canvas"
       class="sidebar--settings--input sidebar--settings--input-text" /> -->
 
-    <aside class="sidebar sidebar--left">
-      <section class="sidebar--toolList">
-        <div data-tool="pencil" class="sidebar--toolList--tool btn btn__active">
-          <i class="fas fa-pencil-alt sidebar--toolList--tool--icon"></i>Pencil
-        </div>
-        <div data-tool="eraser" class="sidebar--toolList--tool btn">
-          <i class="fas fa-eraser sidebar--toolList--tool--icon"></i>Eraser
-        </div>
-        <div data-tool="circle" class="sidebar--toolList--tool btn">
-          <i class="fas fa-circle sidebar--toolList--tool--icon"></i>Circle
-        </div>
-        <div data-tool="rectangle" class="sidebar--toolList--tool btn">
-          <i class="fas fa-square sidebar--toolList--tool--icon"></i>Square
-        </div>
-        <div data-tool="line" class="sidebar--toolList--tool btn">
-          <i class="fas fa-arrows-alt-h sidebar--toolList--tool--icon"></i>Line
-        </div>
-        <div data-tool="text" class="sidebar--toolList--tool btn">
-          <i class="fas fa-font sidebar--toolList--tool--icon"></i>Text
-        </div>
-        <div data-tool="move" class="sidebar--toolList--tool btn">
-          <i class="fas fa-hand-paper sidebar--toolList--tool--icon"></i>Move
-        </div>
-      </section>
-      <section class="sidebar--toolList sidebar--toolList-bottom">
-        <div class="sidebar--toolList--tool sidebar--toolList--tool-undo">
-          <i class="fas fa-undo"></i>
-        </div>
-        <div class="sidebar--toolList--tool sidebar--toolList--tool-redo">
-          <i class="fas fa-redo"></i>
-        </div>
-        <input
-          type="button"
-          value="Save"
-          class="btn btn--save sidebar--toolList--tool-save"
-        />
-        <select class="sidebar--toolList--select">
-          <option class="sidebar--toolList--select--option" value="volvo"
-            >Volvo</option
-          >
-          <option class="sidebar--toolList--select--option" value="saab"
-            >Saab</option
-          >
-          <option class="sidebar--toolList--select--option" value="mercedes"
-            >Mercedes</option
-          >
-          <option class="sidebar--toolList--select--option" value="audi"
-            >Audi</option
-          >
+  <aside class="sidebar sidebar--left">
+    <section class="sidebar--toolList">
+      <div data-tool="pencil" class="sidebar--toolList--tool btn btn-tool btn__active">
+        <i class="fas fa-pencil-alt sidebar--toolList--tool-icon"></i>Pencil
+      </div>
+      <div data-tool="eraser" class="sidebar--toolList--tool btn btn-tool">
+        <i class="fas fa-eraser sidebar--toolList--tool-icon"></i>Eraser
+      </div>
+      <div data-tool="circle" class="sidebar--toolList--tool btn btn-tool">
+        <i class="fas fa-circle sidebar--toolList--tool-icon"></i>Circle
+      </div>
+      <div data-tool="rectangle" class="sidebar--toolList--tool btn btn-tool">
+        <i class="fas fa-square sidebar--toolList--tool-icon"></i>Square
+      </div>
+      <div data-tool="line" class="sidebar--toolList--tool btn btn-tool">
+        <i class="fas fa-arrows-alt-h sidebar--toolList--tool-icon"></i>Line
+      </div>
+      <div data-tool="move" class="sidebar--toolList--tool btn btn-tool">
+        <i class="fas fa-hand-paper sidebar--toolList--tool-icon"></i>Move
+      </div>
+      <div data-tool="text" class="sidebar--toolList--tool btn btn-tool">
+        <i class="fas fa-font sidebar--toolList--tool-icon"></i>Text
+      </div>
+      <div id="textHider" class="hidden sidebar--toolList sidebar--toolList-highlight">
+        <label for="fontSize">Pick font size</label>
+        <input id="fontSize" type="number" value="12" class="sidebar--toolList--tool sidebar--toolList--tool-number" />
+        <select id="fontType"
+          class="sidebar--toolList--tool sidebar--toolList--tool-select sidebar--toolList--tool-select">
+          <option value="Arial">Arial</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="Courier">Courier</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Times New Roman">Times New Roman</option>
         </select>
-        <input type="button" value="Load" class="btn btn--load" />
-      </section>
-    </aside>
-    <div class="canvas--container">
-      <canvas id="canvas" class="canvas" width="300" height="300"></canvas>
-    </div>
-    <!-- <aside id="sidebar__right" class="sidebar sidebar__right sidebar__right__Small">
+        <input type="text" placeholder="Type, then click on canvas"
+          class="sidebar--toolList--tool sidebar--toolList--tool-text-large" />
+      </div>
+    </section>
+    <section class="sidebar--toolList sidebar--toolList-bottom">
+      <div class="sidebar--toolList--tool sidebar--toolList--tool-undo">
+        <i class="fas fa-undo"></i>
+      </div>
+      <div class="sidebar--toolList--tool sidebar--toolList--tool-redo">
+        <i class="fas fa-redo"></i>
+      </div>
+      <input type="text" name="saveName" id="saveName" class="sidebar--toolList--tool sidebar--toolList--tool-text">
+      <input type="button" value="Save" class="btn btn--save sidebar--toolList--tool sidebar--toolList--tool-save" />
+      <select class="sidebar--toolList--tool sidebar--toolList--tool sidebar--toolList--tool">
+        <option class="sidebar--toolList--select--option" value="volvo">1</option>
+        <option class="sidebar--toolList--select--option" value="saab">1888888888888888888888</option>
+        <option class="sidebar--toolList--select--option" value="mercedes">5</option>
+        <option class="sidebar--toolList--select--option" value="audi">1</option>
+      </select>
+      <input type="button" value="Load" class="btn btn--load sidebar--toolList--tool sidebar--toolList--tool-load" />
+    </section>
+  </aside>
+  <div class="canvas--container">
+    <canvas id="canvas" class="canvas" width="1300" height="700"></canvas>
+  </div>
+  <!-- <aside id="sidebar__right" class="sidebar sidebar__right sidebar__right__Small">
     <section class="sidebar--settings">
       
       <label for="fontSize">Pick font size</label><br>
@@ -175,12 +143,10 @@
       </section>
     <i id="sidebar--arrow" onclick="changeSidebarRightSize()" class="fas fa-chevron-left sidebar--arrow"></i>
   </aside> -->
-  </body>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
-    charset="utf-8"
-  ></script>
-  <script src="js/shapes.js" charset="utf-8"></script>
-  <script src="js/drawio.js" charset="utf-8"></script>
-  <script src="js/setup.js" charset="utf-8"></script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" charset="utf-8"></script>
+<script src="js/shapes.js" charset="utf-8"></script>
+<script src="js/drawio.js" charset="utf-8"></script>
+<script src="js/setup.js" charset="utf-8"></script>
+
 </html>

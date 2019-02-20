@@ -6,6 +6,12 @@
 @alt-color: #d0b664;
 @dark-pink-color: #b35c73;
 @pink-color: #cd798f;
+@white-color: #fff;
+@black-color: #000;
+@boxshadow-color: rgba(33, 33, 33, 0.9);
+@padding: 5px;
+@border: 1px solid @black-color;
+@border-radius: 6px;
 //
 //Keyframes
 @keyframes sidebar-small {
@@ -44,11 +50,110 @@
   }
 }
 
+
+//Remove styling from input type color
+input[type="color"] {
+  padding: 0;
+  border: none;
+}
+input[type="color"].nav--container--input--color-active {
+  border: 3px solid @main-color;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+//Setting style for input type text
+input[type="text"] {
+  border: @border;
+  border-radius: @border-radius;
+  outline: none;
+  padding: @padding;
+  box-sizing: border-box;
+}
+input[type="text"]:hover {
+  border-color: @alt-color;
+  box-shadow: 0 0 8px 0 @alt-color;
+}
+
 select {
-  border: solid 1px #505050;
-  border-radius: 6px;
-  padding: 5px;
-  margin-left: 32px;
+  border: 1px solid @black-color;
+  border-radius: @border-radius;
+  padding: @padding;
+}
+select:hover {
+  border-color: @alt-color;
+  box-shadow: 0 0 8px 0 @alt-color;
+}
+
+input[type="number"]:hover {
+  border-color: @alt-color;
+  box-shadow: 0 0 8px 0 @alt-color;
+}
+
+input[type="number"]{
+  border: @border;
+  padding: @padding;
+  border-radius: @border-radius;
+  padding: @padding;
+}
+
+.body {
+  display: grid;
+  grid-template-rows: 150px 1fr;
+  grid-template-columns: 300px 1fr;
+  align-items: center;
+  justify-items: center;
+  background-color: @main-color;
+  height: 100%;
+  margin: 0;
+}
+
+.canvas--container {
+  background-color: @white-color;
+  box-shadow: 0 0 8px 0 @boxshadow-color;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+.logo {
+  background-image: url(/assets/skull-col.png);
+  background-size: 100%;
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: @border-radius;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to bottom right,
+    @main-color,
+    @dark-main-color
+  );
+  color: contrast(@main-color);
+  border: 1px solid @black-color;
+  &__active {
+    background-image: linear-gradient(
+      to bottom right,
+      @pink-color,
+      @dark-pink-color
+    );
+    color: contrast(@pink-color);
+  }
+  &:hover {
+    background-image: linear-gradient(
+      to bottom right,
+      @alt-color,
+      @dark-alt-color
+    );
+    color: contrast(@alt-color);
+  }
 }
 
 .nav {
@@ -84,7 +189,7 @@ select {
       &--fill {
         width: 32px;
         height: 32px;
-        border-radius: 6px;
+        border-radius: @border-radius;
         border: 3px solid @main-color;
         &-filled {
           background-color: @main-color;
@@ -93,12 +198,12 @@ select {
       &--customColor {
         width: 32px;
         height: 32px;
-        border-radius: 6px;
+        border-radius: @border-radius;
       }
       &--color {
         width: 32px;
         height: 32px;
-        border-radius: 6px;
+        border-radius: @border-radius;
         &-active {
           border: 3px solid @main-color;
         }
@@ -125,75 +230,6 @@ select {
   }
 }
 
-//Remove styling from input type color
-input[type="color"] {
-  padding: 0;
-  border: none;
-}
-input[type="color"].nav--container--input--color-active {
-  border: 3px solid @main-color;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-  border: none;
-}
-
-.body {
-  display: grid;
-  grid-template-rows: 150px 1fr;
-  grid-template-columns: 300px 1fr;
-  align-items: center;
-  justify-items: center;
-  background-color: @main-color;
-  height: 100%;
-  margin: 0;
-}
-
-.canvas--container {
-  background-color: white;
-  box-shadow: 0 0 16px rgba(33, 33, 33, 0.9);
-  align-self: flex-start;
-  justify-self: flex-start;
-}
-.logo {
-  background-image: url(/assets/skull-col.png);
-  background-size: 100%;
-  width: 100px;
-  height: 100px;
-  margin-top: 30px;
-}
-
-.btn {
-  padding: 8px 12px;
-  border-radius: 6px;
-  box-sizing: border-box;
-  cursor: pointer;
-  background-image: linear-gradient(
-    to bottom right,
-    @main-color,
-    @dark-main-color
-  );
-  color: contrast(@main-color);
-  border: 1px solid contrast(@main-color);
-  &__active {
-    background-image: linear-gradient(
-      to bottom right,
-      @pink-color,
-      @dark-pink-color
-    );
-    color: contrast(@pink-color);
-  }
-  &:hover {
-    background-image: linear-gradient(
-      to bottom right,
-      @alt-color,
-      @dark-alt-color
-    );
-    color: contrast(@alt-color);
-  }
-}
 .sidebar {
   background-color: @dark-color;
   color: contrast(@dark-color);
@@ -211,20 +247,34 @@ input[type="color"]::-webkit-color-swatch {
     width: 100%;
     display: grid;
     justify-items: center;
+    align-items: end;
     grid-gap: 10px;
+    &-highlight{
+      background-color: @dark-main-color;
+      color: contrast(@dark-main-color);
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-radius: @border-radius;
+      // width: 100%;
+    }
     &-bottom {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      align-items: center;
     }
     &--tool {
-      width: 70%;
+      min-width: 65%;
+      max-width: 65%;
       cursor: pointer;
-      &-save {
-        grid-column: 1 e("/") 3;
-        width: 70%;
+      &-undo {
+        text-align: end;
       }
-      &--icon {
+      &-text {
+        width: 65%;
+      }
+      &-number{
+        border-radius: @border-radius;
+        padding: @padding;
+      }
+      &-icon {
         margin-right: 20px;
       }
     }
@@ -261,4 +311,7 @@ input[type="color"]::-webkit-color-swatch {
   //     animation-fill-mode: forwards;
   //   }
   // }
+  .hidden{
+    visibility: hidden
+  }
 }
