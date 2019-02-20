@@ -9,7 +9,7 @@
 @white-color: #fff;
 @black-color: #000;
 @boxshadow-color: rgba(33, 33, 33, 0.9);
-@padding: 5px;
+@padding: 8px;
 @border: 1px solid @black-color;
 @border-radius: 6px;
 //
@@ -49,7 +49,6 @@
     transform: rotate(180deg);
   }
 }
-
 
 //Remove styling from input type color
 input[type="color"] {
@@ -94,7 +93,7 @@ input[type="number"]:hover {
   box-shadow: 0 0 8px 0 @alt-color;
 }
 
-input[type="number"]{
+input[type="number"] {
   border: @border;
   padding: @padding;
   border-radius: @border-radius;
@@ -103,8 +102,8 @@ input[type="number"]{
 
 .body {
   display: grid;
-  grid-template-rows: 150px 1fr;
-  grid-template-columns: 300px 1fr;
+  grid-template-rows: 140px 1fr;
+  grid-template-columns: 270px 1fr;
   align-items: center;
   justify-items: center;
   background-color: @main-color;
@@ -127,7 +126,7 @@ input[type="number"]{
 }
 
 .btn {
-  padding: 8px 12px;
+  padding: @padding;
   border-radius: @border-radius;
   box-sizing: border-box;
   cursor: pointer;
@@ -176,6 +175,11 @@ input[type="number"]{
     }
     &-seven {
       grid-template-columns: repeat(7, 1fr);
+    }
+    &--tool {
+      cursor: pointer;
+      text-align: center;
+      font-size: 2em;
     }
     &--input {
       cursor: pointer;
@@ -241,7 +245,7 @@ input[type="number"]{
   display: grid;
   &--left {
     grid-row: 2 e("/") 5;
-    grid-template-rows: 3fr 2fr;
+    // grid-template-rows: 1fr;
   }
   &--toolList {
     width: 100%;
@@ -249,7 +253,8 @@ input[type="number"]{
     justify-items: center;
     align-items: end;
     grid-gap: 10px;
-    &-highlight{
+    &-highlight {
+      z-index: 1;
       background-color: @dark-main-color;
       color: contrast(@dark-main-color);
       padding-top: 20px;
@@ -258,19 +263,21 @@ input[type="number"]{
       // width: 100%;
     }
     &-bottom {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
+      .sidebar--toolList--tool:nth-child(odd) {
+        justify-self: end;
+        max-width: 90%;
+        width: 90%;
+      }
     }
     &--tool {
       min-width: 65%;
       max-width: 65%;
       cursor: pointer;
-      &-undo {
-        text-align: end;
-      }
       &-text {
         width: 65%;
       }
-      &-number{
+      &-number {
         border-radius: @border-radius;
         padding: @padding;
       }
@@ -311,7 +318,7 @@ input[type="number"]{
   //     animation-fill-mode: forwards;
   //   }
   // }
-  .hidden{
-    visibility: hidden
+  .hidden {
+    visibility: hidden;
   }
 }

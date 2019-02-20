@@ -19,10 +19,10 @@ Shape.prototype.resize = function() {};
  * @param  {Number} width
  * @param  {Number} height
  */
-function Rectangle(position, width, height) {
+function Rectangle(position) {
   Shape.call(this, position);
-  this.width = width;
-  this.height = height;
+  this.width = 0;
+  this.height = 0;
 }
 
 // Assign the prototype
@@ -58,11 +58,10 @@ Rectangle.prototype.resize = function(x, y) {
 
 /**
  * @param  {Object} position x and y cords
- * @param  {Number} radius calculated using pythagoras of delta mouse movement
  */
-function Circle(position, radius) {
+function Circle(position) {
   Shape.call(this, position);
-  this.radius = radius;
+  this.radius = 0;
 }
 
 Circle.prototype = Object.create(Shape.prototype);
@@ -129,9 +128,8 @@ Pencil.prototype.resize = function(x, y) {
 
 /**
  * @param  {Object} position
- * @param  {Object} endpoint
  */
-function Line(position, endpoint) {
+function Line(position) {
   Shape.call(this, position);
   this.endCords = position;
 }
