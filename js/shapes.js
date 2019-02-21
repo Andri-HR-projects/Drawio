@@ -11,11 +11,11 @@ function Shape(position) {
   this.text = drawio.selectedText;
 }
 
-Shape.prototype.render = function() {};
-Shape.prototype.move = function(position) {
+Shape.prototype.render = function () { };
+Shape.prototype.move = function (position) {
   this.position = position;
 };
-Shape.prototype.resize = function() {};
+Shape.prototype.resize = function () { };
 
 /**
  * @param  {Object} position {x , y cords}
@@ -32,29 +32,29 @@ function Rectangle(position) {
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
-Rectangle.prototype.render = function() {
+Rectangle.prototype.render = function () {
   // Render a rectangle
   if (this.fill) {
     drawio.ctx.fillStyle = this.color;
     drawio.ctx.fillRect(
-        this.position.x,
-        this.position.y,
-        this.width,
-        this.height
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
     );
   } else {
     drawio.ctx.lineWidth = this.lineWidth;
     drawio.ctx.strokeStyle = this.color;
     drawio.ctx.strokeRect(
-        this.position.x,
-        this.position.y,
-        this.width,
-        this.height
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
     );
   }
 };
 
-Rectangle.prototype.resize = function(x, y) {
+Rectangle.prototype.resize = function (x, y) {
   this.width = x - this.position.x;
   this.height = y - this.position.y;
 };
@@ -70,7 +70,7 @@ function Circle(position) {
 Circle.prototype = Object.create(Shape.prototype);
 Circle.prototype.constructor = Circle;
 
-Circle.prototype.render = function() {
+Circle.prototype.render = function () {
   drawio.ctx.beginPath();
   drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
   if (this.fill) {
@@ -83,9 +83,9 @@ Circle.prototype.render = function() {
   }
 };
 
-Circle.prototype.resize = function(x, y) {
+Circle.prototype.resize = function (x, y) {
   this.radius = Math.sqrt(
-      Math.pow(x - this.position.x, 2) + Math.pow(y - this.position.y, 2)
+    Math.pow(x - this.position.x, 2) + Math.pow(y - this.position.y, 2)
   );
 };
 
@@ -106,7 +106,7 @@ function Pencil(position, eraser) {
 Pencil.prototype = Object.create(Shape.prototype);
 Pencil.prototype.constructor = Pencil;
 
-Pencil.prototype.render = function() {
+Pencil.prototype.render = function () {
   drawio.ctx.beginPath();
   if (this.eraser) {
     drawio.ctx.strokeStyle = '#fff';
@@ -122,15 +122,15 @@ Pencil.prototype.render = function() {
   drawio.ctx.closePath();
 };
 
-Pencil.prototype.resize = function(x, y) {
-  this.cords[this.index] = {x, y};
+Pencil.prototype.resize = function (x, y) {
+  this.cords[this.index] = { x, y };
   this.preCords = this.nextCords;
-  this.nextCords = {x, y};
+  this.nextCords = { x, y };
   this.index++;
 };
 
 /**
- * @param  {Object} position
+ * @param  {Object} position {x , y cords}
  */
 function Line(position) {
   Shape.call(this, position);
@@ -140,7 +140,7 @@ function Line(position) {
 Line.prototype = Object.create(Shape.prototype);
 Line.prototype.constructor = Line;
 
-Line.prototype.render = function() {
+Line.prototype.render = function () {
   drawio.ctx.beginPath();
   drawio.ctx.lineWidth = this.lineWidth;
   drawio.ctx.strokeStyle = this.color;
@@ -149,12 +149,12 @@ Line.prototype.render = function() {
   drawio.ctx.stroke();
 };
 
-Line.prototype.resize = function(x, y) {
-  this.endCords = {x, y};
+Line.prototype.resize = function (x, y) {
+  this.endCords = { x, y };
 };
 
 /**
- * @param  {Object} position
+ * @param  {Object} position {x , y cords}
  */
 function Text(position) {
   Shape.call(this, position);
@@ -165,13 +165,12 @@ function Text(position) {
 Text.prototype = Object.create(Shape.prototype);
 Text.prototype.constructor = Text;
 
-Text.prototype.render = function() {
+Text.prototype.render = function () {
   drawio.ctx.fillStyle = this.color;
   drawio.ctx.font = this.fontSize.toString() + ' ' + this.fontType.toString();
-  console.log(drawio.ctx.font);
   drawio.ctx.fillText(this.text, this.position.x, this.position.y);
 };
 
-Text.prototype.resize = function(x, y) {
-  this.position = {x, y};
+Text.prototype.resize = function (x, y) {
+  this.position = { x, y };
 };

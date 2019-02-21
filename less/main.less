@@ -12,43 +12,6 @@
 @padding: 8px;
 @border: 1px solid @black-color;
 @border-radius: 6px;
-//
-//Keyframes
-@keyframes sidebar-small {
-  from {
-    width: 300px;
-  }
-  to {
-    width: 100px;
-  }
-}
-
-@keyframes sidebar-large {
-  from {
-    width: 100px;
-  }
-  to {
-    width: 300px;
-  }
-}
-
-@keyframes arrow-left {
-  from {
-    transform: rotate(180deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes arrow-right {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(180deg);
-  }
-}
 
 //Remove styling from input type color
 input[type="color"] {
@@ -100,6 +63,7 @@ input[type="number"] {
   padding: @padding;
 }
 .inputNumber {
+  color: @black-color;
   display: inline-block;
   position: relative;
   &::after {
@@ -178,28 +142,31 @@ input[type="number"] {
   background-color: @dark-color;
   color: contrast(@dark-color);
   display: grid;
+  grid-gap: 10px;
+  grid-row-gap: 10px;
   grid-template-columns: 300px 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   align-items: center;
   justify-items: center;
   &--container {
     display: grid;
+    grid-gap: 10px;
+    grid-row-gap: 10px;
     align-items: center;
     grid-template-columns: repeat(3, 1fr);
+    &-two {
+      grid-template-columns: repeat(2, 1fr);
+    }
     &-four {
       grid-template-columns: repeat(4, 1fr);
     }
-    &-seven {
-      grid-template-columns: repeat(7, 1fr);
-    }
-    &--tool {
+    &--tool { 
       cursor: pointer;
       text-align: center;
       font-size: 2em;
     }
     &--input {
       cursor: pointer;
-      margin: 5px;
       &--number {
         width: 60px;
       }
@@ -302,38 +269,6 @@ input[type="number"] {
       }
     }
   }
-  // &.sidebar__large {
-  //   animation-name: sidebar-large;
-  //   animation-duration: 0.5s;
-  //   animation-fill-mode: forwards;
-  //   .sidebar--settings {
-  //     display: block;
-  //   }
-  // }
-  // &.sidebar__small {
-  //   animation-name: sidebar-small;
-  //   animation-duration: 0.5s;
-  //   animation-fill-mode: forwards;
-  //   .sidebar--settings {
-  //     display: none;
-  //   }
-  // }
-  // &--arrow {
-  //   position: absolute;
-  //   top: 50%;
-  //   margin-left: 20px;
-  //   cursor: pointer;
-  //   &__right {
-  //     animation-name: arrow-right;
-  //     animation-duration: 0.5s;
-  //     animation-fill-mode: forwards;
-  //   }
-  //   &__left {
-  //     animation-name: arrow-left;
-  //     animation-duration: 0.5s;
-  //     animation-fill-mode: forwards;
-  //   }
-  // }
   .hidden {
     visibility: hidden;
   }
