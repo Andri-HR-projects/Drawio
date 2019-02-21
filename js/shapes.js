@@ -6,6 +6,9 @@ function Shape(position) {
   this.color = drawio.selectedColor;
   this.fill = drawio.selectedFill;
   this.lineWidth = drawio.selectedLineWidth;
+  this.fontSize = drawio.selectedFontSize;
+  this.fontType = drawio.selectedFont;
+  this.text = drawio.selectedText;
 }
 
 Shape.prototype.render = function() {};
@@ -148,4 +151,27 @@ Line.prototype.render = function() {
 
 Line.prototype.resize = function(x, y) {
   this.endCords = {x, y};
+};
+
+/**
+ * @param  {Object} position
+ */
+function Text(position) {
+  Shape.call(this, position);
+  this.position = position;
+  this.render();
+}
+
+Text.prototype = Object.create(Shape.prototype);
+Text.prototype.constructor = Text;
+
+Text.prototype.render = function() {
+  drawio.ctx.fillStyle = this.color;
+  drawio.ctx.font = this.fontSize.toString() + ' ' + this.fontType.toString();
+  console.log(drawio.ctx.font);
+  drawio.ctx.fillText(this.text, this.position.x, this.position.y);
+};
+
+Text.prototype.resize = function(x, y) {
+  this.position = {x, y};
 };

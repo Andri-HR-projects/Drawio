@@ -99,6 +99,22 @@ input[type="number"] {
   border-radius: @border-radius;
   padding: @padding;
 }
+.inputNumber {
+  display: inline-block;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 5px;
+    right: 0.5em;
+    transition: all 0.05s ease-in-out;
+  }
+  &:hover::after {
+    right: 1.5em;
+  }
+  &-pixles::after {
+    content: "px";
+  }
+}
 
 .body {
   display: grid;
@@ -271,8 +287,8 @@ input[type="number"] {
       }
     }
     &--tool {
-      min-width: 65%;
-      max-width: 65%;
+      min-width: 70%;
+      // max-width: 65%;
       cursor: pointer;
       &-text {
         width: 65%;

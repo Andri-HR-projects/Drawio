@@ -72,6 +72,22 @@ input[type="number"] {
   border-radius: 6px;
   padding: 8px;
 }
+.inputNumber {
+  display: inline-block;
+  position: relative;
+}
+.inputNumber::after {
+  position: absolute;
+  top: 5px;
+  right: 0.5em;
+  transition: all 0.05s ease-in-out;
+}
+.inputNumber:hover::after {
+  right: 1.5em;
+}
+.inputNumber-pixles::after {
+  content: "px";
+}
 .body {
   display: grid;
   grid-template-rows: 140px 1fr;
@@ -227,8 +243,7 @@ input[type="number"] {
   width: 90%;
 }
 .sidebar--toolList--tool {
-  min-width: 65%;
-  max-width: 65%;
+  min-width: 70%;
   cursor: pointer;
 }
 .sidebar--toolList--tool-text {

@@ -19,14 +19,14 @@ window.drawio = {
     ERASER: 'eraser',
     LINE: 'line',
     TEXT: 'text',
-    // TODO: add text, move
+    // TODO: add move
   },
   selectedColor: '#000',
   selectedFill: true,
   selectedLineWidth: 12,
   selectedFontSize: '28px',
-  selectedFont: 'Ariel',
-  selectedText: ' ',
+  selectedFont: 'ariel',
+  selectedText: '',
 };
 
 $(function() {
@@ -123,11 +123,12 @@ $(function() {
     drawio.selectedFontSize = $(this)[0].value + 'px';
   });
   // Change selectedFont
-  $('.nav--container--input-fontType').on('change', function() {
-    drawio.selectedFontType = $(this)[0].value;
+  $('#fontType').on('change', function() {
+    drawio.selectedFont = $(this)[0].value;
+    console.log(drawio.selectedFont);
   });
   // Change selectedText
-  $('.nav--container--input-text').on('change', function() {
+  $('#text').on('input', function() {
     drawio.selectedText = $(this)[0].value;
   });
   // Undo shapes
@@ -271,6 +272,16 @@ $(function() {
             },
             0
         );
+        break;
+      case drawio.availableShapes.TEXT:
+        if (drawio.selectedText != '') {
+          drawio.selectedElement = new Text({
+            x: mouseEvent.offsetX,
+            y: mouseEvent.offsetY,
+          });
+        }
+        break;
+      default:
         break;
     }
   });
